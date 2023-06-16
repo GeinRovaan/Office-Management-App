@@ -77,9 +77,9 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $projects)
+    public function edit(Project $project)
     {
-        return view('projects.edit',compact('projects'));
+        return view('projects.edit', compact('project'));
     }
     
     /**

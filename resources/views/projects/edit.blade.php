@@ -38,7 +38,6 @@
                         {!! Form::select('users[]', $users,[], array('class' => 'form-control','multiple')) !!}--}}
                     <br/>
                     {{--@endforeach--}}
-                    ?>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
