@@ -6,8 +6,8 @@
                 <h2>Projects</h2>
             </div>
             <div class="pull-right">
-                @can('product-create')
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Project</a>
+                @can('project-create')
+                <a class="btn btn-success" href="{{ route('projects.create') }}"> Create New Project</a>
                 @endcan
             </div>
         </div>
@@ -17,6 +17,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    <br>
     <table class="table table-bordered">
         <tr>
             <th>No</th>
@@ -25,10 +26,10 @@
             <th>Details</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($products as $product)
+        @foreach ($projects as $project)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $product->name }}</td>
+            <td>{{ $project->name }}</td>
             <td>
             @if(!empty($users))
                 @foreach($users as $v)
@@ -36,16 +37,16 @@
                 @endforeach
             @endif
             </td>
-            <td>{{ $product->detail }}</td>
+            <td>{{ $project->detail }}</td>
             <td>
-                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
-                    @can('product-edit')
-                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                <form action="{{ route('projects.destroy',$project->id) }}" method="POST">
+                    <a class="btn btn-info" href="{{ route('projects.show',$project->id) }}">Show</a>
+                    @can('project-edit')
+                    <a class="btn btn-primary" href="{{ route('projects.edit',$project->id) }}">Edit</a>
                     @endcan
                     @csrf
                     @method('DELETE')
-                    @can('product-delete')
+                    @can('project-delete')
                     <button type="submit" class="btn btn-danger">Delete</button>
                     @endcan
                 </form>
@@ -53,5 +54,5 @@
         </tr>
         @endforeach
     </table>
-    {!! $products->links() !!}
+    {!! $projects->links() !!}
 @endsection

@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel 9 User Roles and Permissions Tutorial Example') }}</title>
+    <title>{{ config('app.name', 'Laravel 9') }}</title>
 
     @vite(['resources/js/app.js'])
 
@@ -50,16 +50,19 @@
                             @can('role-list')
                             <li><a class="nav-link" href="{{ route('roles.index') }}">Roles</a></li>
                             @endcan
-                            @can('product-list')
-                            <li><a class="nav-link" href="{{ route('products.index') }}">Projects</a></li>
+                            @can('project-list')
+                            <li><a class="nav-link" href="{{ route('projects.index') }}">Projects</a></li>
                             @endcan
-                            {{--@can('leave-menu')--}}
+                            @can('leave-list')
                             <li><a class="nav-link" href="{{ route('leaves.index') }}">Leave</a></li>
-                            {{--@endcan--}}
+                            @endcan
+                            @can('time-list')
+                            <li><a class="nav-link" href="{{ route('times.index') }}">Entry/Exit</a></li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
-                                    <span class="badge rounded-pill bg-dark">{{ Auth::user()->roles->pluck('name')->implode(', ') }}</span>
+                                    <span class="badge rounded-pill bg-danger">{{ Auth::user()->roles->pluck('name')->implode(', ') }}</span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

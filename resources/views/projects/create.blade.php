@@ -6,7 +6,7 @@
                 <h2>Add New Project</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('projects.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -20,7 +20,8 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('products.store') }}" method="POST">
+    <br>
+    <form action="{{ route('projects.store') }}" method="POST">
         @csrf
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -31,21 +32,22 @@
             </div>
              <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                     <strong>Assigned To:</strong>
-                    <br/>
-                    {{--@foreach ($users as $u)--}}
-                        {!! Form::select('users[]', $users,[], array('class' => 'form-control','multiple')) !!}
-                    <br/>
+                    <br>
+                    <strong>Assigned To:</strong>
+                    {{--@foreach ($users as $u)
+                        {!! Form::select('users[]', $users,[], array('class' => 'form-control','multiple')) !!}--}}
                     {{--@endforeach--}}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <br>
                     <strong>Detail:</strong>
                     <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>

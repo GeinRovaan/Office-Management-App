@@ -2,10 +2,10 @@
     
 namespace App\Http\Controllers;
     
-use App\Models\Product;
+use App\Models\Project;
 use Illuminate\Http\Request;
     
-class ProductController extends Controller
+class ProjectController extends Controller
 { 
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class ProductController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:product-create', ['only' => ['create','store']]);
-         $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:product-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:project-list|project-create|project-edit|project-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:project-create', ['only' => ['create','store']]);
+         $this->middleware('permission:project-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:project-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -26,8 +26,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
-        return view('products.index',compact('products'))
+        $projects = Project::latest()->paginate(5);
+        return view('projects.index',compact('projects'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     
@@ -38,7 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('projects.create');
     }
     
     /**
@@ -54,32 +54,32 @@ class ProductController extends Controller
             'detail' => 'required',
         ]);
     
-        Product::create($request->all());
+        Project::create($request->all());
     
-        return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+        return redirect()->route('projects.index')
+                        ->with('success','Project created successfully.');
     }
     
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Project $projects)
     {
-        return view('products.show',compact('product'));
+        return view('projects.show',compact('projects'));
     }
     
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Project $projects)
     {
-        return view('products.edit',compact('product'));
+        return view('projects.edit',compact('projects'));
     }
     
     /**
@@ -89,14 +89,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Project $project)
     {
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
         ]);
     
-        $product->update($request->all());
+        $project->update($request->all());
     
         return redirect()->route('products.index')
                         ->with('success','Product updated successfully');
@@ -108,7 +108,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Project $product)
     {
         $product->delete();
     
