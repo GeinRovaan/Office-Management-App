@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel 9 User Roles and Permissions Tutorial Example - LaravelTuts.com
+                    Office Management
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -44,12 +44,22 @@
                                 </li>
                             @endif
                         @else
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                            <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
-                            <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
+                            @can('user-list')
+                            <li><a class="nav-link" href="{{ route('users.index') }}">Users</a></li>
+                            @endcan
+                            @can('role-list')
+                            <li><a class="nav-link" href="{{ route('roles.index') }}">Roles</a></li>
+                            @endcan
+                            @can('product-list')
+                            <li><a class="nav-link" href="{{ route('products.index') }}">Projects</a></li>
+                            @endcan
+                            {{--@can('leave-menu')--}}
+                            <li><a class="nav-link" href="{{ route('leaves.index') }}">Leave</a></li>
+                            {{--@endcan--}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
+                                    <span class="badge rounded-pill bg-dark">{{ Auth::user()->roles->pluck('name')->implode(', ') }}</span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

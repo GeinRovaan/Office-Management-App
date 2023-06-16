@@ -8,7 +8,7 @@
         <div class="pull-right">
         @can('role-create')
             <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
-            @endcan
+        @endcan
         </div>
     </div>
 </div>
@@ -17,6 +17,7 @@
         <p>{{ $message }}</p>
     </div>
 @endif
+<br>
 <table class="table table-bordered">
     <tr>
         <th>No</th>
@@ -43,5 +44,4 @@
     @endforeach
 </table>
 {!! $roles->render() !!}
-<p class="text-center text-primary"><small>Tutorial by LaravelTuts.com</small></p>
 @endsection

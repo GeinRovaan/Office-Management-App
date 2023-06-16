@@ -25,7 +25,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            {!! Form::text('name', null, array('placeholder' => 'Name', 'class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -44,5 +44,5 @@
     </div>
 </div>
 {!! Form::close() !!}
+{{--{!! $data->render() !!}--}}
 @endsection
-<p class="text-center text-primary"><small>Tutorial by LaravelTuts.com</small></p>
